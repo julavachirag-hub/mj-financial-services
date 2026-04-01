@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke Generator</title>
+    <script>
+        async function fetchJoke() {
+            const response = await fetch('https://api.jokeapi.dev/joke/Any');
+            const jokeData = await response.json();
+            const joke = jokeData.joke || jokeData.setup + ' ' + jokeData.delivery;
+            document.getElementById('joke').innerText = joke;
+        }
+        
+        window.onload = fetchJoke;
+    </script>
+</head>
+<body>
+    <h1>Random Joke Generator</h1>
+    <p id="joke">Loading...</p>
+    <button onclick="fetchJoke()">Get another joke</button>
+</body>
+</html>
